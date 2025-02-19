@@ -1,15 +1,80 @@
-# Lorcana Project
+# Laravel Project with Sail, Docker, and Laravel Breeze
 
-Welcome to the Lorcana project! This is a fan-made project dedicated to Disney Lorcana, the trading card game by Ravensburger.
+## Prerequisites
 
-## About
+-   Docker & Docker Compose
+-   Laravel Sail
 
-This project aims to provide tools and resources for Disney Lorcana players and enthusiasts. More details about specific features and functionality will be added as the project develops.
+## Installation
 
-## Getting Started
+1. **Clone the repository**
 
-Coming soon...
+    ```sh
+    git clone <your-repository-url>
+    cd <your-project-directory>
+    ```
 
-## License
+2. **Copy the environment file**
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+    ```sh
+    cp .env.example .env
+    ```
+
+3. **Start the Docker container using Sail**
+
+    ```sh
+    ./vendor/bin/sail up -d
+    ```
+
+4. **Install dependencies**
+
+    ```sh
+    ./vendor/bin/sail composer install
+    ```
+
+5. **Generate application key**
+
+    ```sh
+    ./vendor/bin/sail artisan key:generate
+    ```
+
+6. **Run migrations**
+
+    ```sh
+    ./vendor/bin/sail artisan migrate
+    ```
+
+7. **Install Laravel Breeze** (for authentication scaffolding)
+    ```sh
+    ./vendor/bin/sail composer require laravel/breeze --dev
+    ./vendor/bin/sail artisan breeze:install
+    ./vendor/bin/sail npm install && ./vendor/bin/sail npm run dev
+    ```
+
+## API Routes
+
+| Method | Route              | Controller                       | Middleware     |
+| ------ | ------------------ | -------------------------------- | -------------- |
+| POST   | `/register`        | `RegisteredUserController@store` | None           |
+| POST   | `/login`           | `LoginController@store`          | None           |
+| POST   | `/logout`          | `LogoutController@store`         | `auth:sanctum` |
+| GET    | `/me`              | `MeController@show`              | `auth:sanctum` |
+| GET    | `/sets`            | `SetController@index`            | `auth:sanctum` |
+| GET    | `/sets/{id}`       | `SetController@show`             | `auth:sanctum` |
+| GET    | `/sets/{id}/cards` | `SetController@getCards`         | `auth:sanctum` |
+
+## Running the Project
+
+To start the application, run:
+
+```sh
+./vendor/bin/sail up -d
+```
+
+## Stopping the Project
+
+To stop the Docker containers, run:
+
+```sh
+./vendor/bin/sail down
+```
