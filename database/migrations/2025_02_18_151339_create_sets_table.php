@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
+            $table->integer('api_id');
             $table->string('name');
             $table->integer('code');
             $table->date('release_date');

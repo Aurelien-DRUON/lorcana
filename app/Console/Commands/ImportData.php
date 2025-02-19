@@ -11,8 +11,8 @@ use function Laravel\Prompts\progress;
 
 class ImportData extends Command
 {
-    protected $signature = 'app:import-data';
-    protected $description = 'Permet de récupérer gentiment les données d\'une autre API';
+    protected $signature = "app:import-data";
+    protected $description = "Permet de récupérer gentiment les données d\'une autre API";
 
     private $useCache = false;
     public function handle()
@@ -46,7 +46,7 @@ class ImportData extends Command
                 "name" => $value->name,
                 "number" => $value->number,
                 "version" => $value->version ?? "",
-                "cardIdentifier" => $value->fullIdentifier,
+                "card_dentifier" => $value->fullIdentifier,
                 "description" => $value->fullText,
                 "image" =>  $value->images->full,
                 "thumbnail" => $value->images->thumbnail,
@@ -79,6 +79,7 @@ class ImportData extends Command
                 "name" => $value["name"],
                 "code" => $key,
                 "type" => $value["type"],
+                "card_number" => 0,
                 "release_date" => $value["releaseDate"]
             ];
         }

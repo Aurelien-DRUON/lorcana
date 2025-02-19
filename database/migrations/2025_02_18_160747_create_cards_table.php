@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->integer('api_id');
             $table->foreignId('set_id')->constrained('sets')->onDelete('cascade');
             $table->string('name');
             $table->string('version');
